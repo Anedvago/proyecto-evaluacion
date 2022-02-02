@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +19,9 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cliente;
 	
-	@Column(name="TIPO_IDENTIFICACION")
-	private String tipoIdentificacion;
+	@ManyToOne
+	@JoinColumn(name="TIPO_IDENTIFICACION")
+	private TipoIdentificacion tipoIdentificacion;
 	
 	@Column(name="IDENTIFICACION")
 	private String identificacion;
@@ -36,8 +39,7 @@ public class Cliente {
 		
 	}
 
-
-	public Cliente(long cliente, String tipoIdentificacion, String identificacion, String razonSocial,
+	public Cliente(long cliente, TipoIdentificacion tipoIdentificacion, String identificacion, String razonSocial,
 			Date fechaRegistro, String estado) {
 		super();
 		this.cliente = cliente;
@@ -48,65 +50,56 @@ public class Cliente {
 		this.estado = estado;
 	}
 
-
 	public long getCliente() {
 		return cliente;
 	}
-
 
 	public void setCliente(long cliente) {
 		this.cliente = cliente;
 	}
 
-
-	public String getTipoIdentificacion() {
+	public TipoIdentificacion getTipoIdentificacion() {
 		return tipoIdentificacion;
 	}
 
-
-	public void setTipoIdentificacion(String tipoIdentificacion) {
+	public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
-
 
 	public String getIdentificacion() {
 		return identificacion;
 	}
 
-
 	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
-
 
 	public String getRazonSocial() {
 		return razonSocial;
 	}
 
-
 	public void setRazonSocial(String razonSocial) {
 		this.razonSocial = razonSocial;
 	}
-
 
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
 
 	public String getEstado() {
 		return estado;
 	}
 
-
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}	
+	}
+
+
+	
 	
 
 }

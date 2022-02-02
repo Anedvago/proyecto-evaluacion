@@ -10,6 +10,8 @@ public interface UsuarioServicio {
 	public List<Usuario> findAll();
 
 	public Optional<Usuario> findByID(Long id);
+	
+	public Optional<Usuario> buscarPorNombre(Usuario detUsuario);
 
 	public Usuario save(Usuario usuario);
 

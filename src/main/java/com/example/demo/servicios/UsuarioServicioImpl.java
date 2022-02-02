@@ -35,4 +35,13 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 		repo.deleteById(id);
 	}
 
+	@Override
+	public Optional<Usuario> buscarPorNombre(Usuario detUsuario) {
+		return repo.buscarPorUsuario(detUsuario.getNombre());
+	}
+
+	
+
+	
+
 }

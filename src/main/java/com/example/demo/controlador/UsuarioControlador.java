@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +21,12 @@ import com.example.demo.servicios.UsuarioServicio;
 
 @RestController
 @RequestMapping("/api/usuarios/")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class UsuarioControlador {
-	
+
 	@Autowired
 	private UsuarioServicio serv;
-	
+
 	// lista todos los usuarios
 	@GetMapping("/usuarios")
 	public List<Usuario> listarTodosUsuarios() {
@@ -35,18 +37,6 @@ public class UsuarioControlador {
 	@PostMapping("/registro-usuarios")
 	public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(serv.save(usuario));
-	}
-
-	// Obtener un Usuario
-	@GetMapping("/usuario/{id}")
-	public ResponseEntity<?> obtenerUsuario(@PathVariable Long id) {
-		Optional<Usuario> usuario = serv.findByID(id);
-
-		if (!usuario.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		return ResponseEntity.ok(usuario);
 	}
 
 	// actualizar Usuario
@@ -79,5 +69,48 @@ public class UsuarioControlador {
 		serv.deleteByID(id);
 		return ResponseEntity.ok().build();
 	}
+
+	
+	// Login de un usuario
+	@PostMapping("/login")
+	public ResponseEntity<Usuario> loginUsuario(@RequestBody Usuario detUsuario) {
+		Optional<Usuario> usuario = serv.buscarPorNombre(detUsuario);
+
+		if (!usuario.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		if (!detUsuario.getContraseña().equals(usuario.get().getContraseña())) {
+			return ResponseEntity.notFound().build();
+		}
+
+		return ResponseEntity.status(HttpStatus.OK).body(usuario.get());
+	}
+	// Obtener un Usuario
+		@GetMapping("/usuario/{id}")
+		public ResponseEntity<?> obtenerUsuario(@PathVariable Long id) {
+			Optional<Usuario> usuario = serv.findByID(id);
+
+			if (!usuario.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+
+			return ResponseEntity.ok(usuario);
+		}
+
+	// Obtiene un usuario a partir del nombre
+		@GetMapping("/login/{detUsuario}")
+		public ResponseEntity<?> BuscarPorNombre(@PathVariable String detUsuario) {
+			Usuario uss = new Usuario();
+			uss.setNombre(detUsuario);
+			Optional<Usuario> usuario = serv.buscarPorNombre(uss);
+
+			if (!usuario.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+			
+
+			return ResponseEntity.ok(usuario);
+		}
 
 }

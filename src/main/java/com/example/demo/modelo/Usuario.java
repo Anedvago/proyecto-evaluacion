@@ -29,22 +29,21 @@ public class Usuario {
 	@Column(name = "contraseña")
 	private String contraseña;
 
-	@OneToOne
-	@JoinColumn(name = "id_perfil")
-	private Perfil idPerfil;
+	@JoinColumn(name = "perfil")
+	private String Perfil;
 
 	public Usuario() {
 
 	}
 
-	public Usuario(long idUsuario, String nombre, String apellido, String usuario, String contraseña, Perfil idPerfil) {
+	public Usuario(long idUsuario, String nombre, String apellido, String usuario, String contraseña, String perfil) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
-		this.idPerfil = idPerfil;
+		Perfil = perfil;
 	}
 
 	public long getIdUsuario() {
@@ -87,14 +86,15 @@ public class Usuario {
 		this.contraseña = contraseña;
 	}
 
-	public Perfil getIdPerfil() {
-		return idPerfil;
+	public String getPerfil() {
+		return Perfil;
 	}
 
-	public void setIdPerfil(Perfil idPerfil) {
-		this.idPerfil = idPerfil;
+	public void setPerfil(String perfil) {
+		Perfil = perfil;
 	}
 
+	
 	
 	
 }

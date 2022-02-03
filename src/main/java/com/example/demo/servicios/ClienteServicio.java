@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.example.demo.modelo.Cliente;
 
+
 public interface ClienteServicio {
 	
 	public List<Cliente> findAll();
@@ -14,5 +15,7 @@ public interface ClienteServicio {
 	public Cliente save(Cliente cliente);
 	
 	public void deleteByID(Long id);
+	
+	public Optional<Cliente> buscarPorIden(long tipo, String iden);
 
 }

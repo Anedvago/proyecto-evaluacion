@@ -35,4 +35,9 @@ public class ClienteServicioImpl implements ClienteServicio{
 		repo.deleteById(id);
 	}
 
+	@Override
+	public Optional<Cliente> buscarPorIden(long tipo, String iden) {
+		return repo.buscarPorIden(tipo, iden);
+	}
+
 }

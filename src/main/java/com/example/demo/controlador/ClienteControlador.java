@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.Cliente;
+
 import com.example.demo.servicios.ClienteServicio;
 
 @RestController
@@ -82,5 +83,18 @@ public class ClienteControlador {
 		servicioCliente.deleteByID(id);
 		return ResponseEntity.ok().build();
 	}
+	
+	// Obtiene un cliente a partir de la identificacion y el tipo de identificacion
+			@GetMapping("/cliente/{tipo}/{iden}")
+			public ResponseEntity<?> buscarPorIden(@PathVariable long tipo,@PathVariable String iden) {
+				Optional<Cliente> cliente = servicioCliente.buscarPorIden(tipo,iden);
+
+				if (!cliente.isPresent()) {
+					return ResponseEntity.notFound().build();
+				}
+				
+
+				return ResponseEntity.ok(cliente);
+			}
 
 }

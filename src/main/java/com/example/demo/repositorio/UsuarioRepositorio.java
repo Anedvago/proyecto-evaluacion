@@ -12,7 +12,7 @@ import com.example.demo.modelo.Usuario;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	
-	@Query(nativeQuery = false, value = "SELECT u FROM Usuario u WHERE nombre = :nombre")
+	@Query(nativeQuery = false, value = "SELECT u FROM Usuario u WHERE usuario = :nombre")
 	Optional<Usuario> buscarPorUsuario(@Param("nombre")String nombre);
 	
 }

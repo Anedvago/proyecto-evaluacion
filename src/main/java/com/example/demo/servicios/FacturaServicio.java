@@ -12,6 +12,8 @@ public interface FacturaServicio {
 	
 	public Optional<Factura> findByID(Long id);
 	
+	public Optional<Factura> obtenerUltFact();
+	
 	public Factura save(Factura factura);
 	
 	public void deleteByID(Long id);

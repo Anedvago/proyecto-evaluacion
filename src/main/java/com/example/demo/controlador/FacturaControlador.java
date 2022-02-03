@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.example.demo.servicios.FacturaServicio;
 
 @RestController
 @RequestMapping("/api/facturas/")
+@CrossOrigin("http://localhost:4200/")
 public class FacturaControlador {
 
 	@Autowired
@@ -77,4 +79,17 @@ public class FacturaControlador {
 		serv.deleteByID(id);
 		return ResponseEntity.ok().build();
 	}
+	
+	// Obtiene el ultimo registro de fact
+		@GetMapping("/factura/ultima")
+		public ResponseEntity<Optional<Factura>> obtenerUlt() {
+
+			Optional<Factura> factura = serv.obtenerUltFact();
+
+			if (!factura.isPresent()) {
+				return ResponseEntity.notFound().build();
+			}
+
+			return ResponseEntity.ok(factura);
+		}
 }

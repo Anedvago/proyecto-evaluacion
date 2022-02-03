@@ -36,4 +36,9 @@ public class FacturaServicioImpl implements FacturaServicio{
 		
 	}
 
+	@Override
+	public Optional<Factura> obtenerUltFact() {
+		return repo.obtenerUltFact();
+	}
+
 }

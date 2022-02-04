@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.modelo.Detalle;
+import com.example.demo.modelo.ReporteProd;
 import com.example.demo.repositorio.DetalleRepositorio;
 
 
@@ -36,5 +37,12 @@ public class DetalleServicioImpl implements DetalleServicio{
 		repo.deleteById(id);
 		
 	}
+
+	@Override
+	public List<ReporteProd> obtenerReporte() {
+		return repo.obtenerReporte();
+	}
+
+	
 
 }

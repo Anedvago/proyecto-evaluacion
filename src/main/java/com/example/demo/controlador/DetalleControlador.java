@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.Detalle;
+import com.example.demo.modelo.ReporteProd;
 import com.example.demo.servicios.DetalleServicio;
 
 @RestController
@@ -80,6 +81,12 @@ public class DetalleControlador {
 
 		serv.deleteByID(id);
 		return ResponseEntity.ok().build();
+	}
+	
+	//Obtener reporte
+	@GetMapping("/reporte-productos")
+	public List<ReporteProd> listarReporte() {
+		return serv.obtenerReporte();
 	}
 
 }

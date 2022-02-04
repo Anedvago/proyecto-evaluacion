@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.Usuario;
 import com.example.demo.servicios.UsuarioServicio;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping("/api/usuarios/")
@@ -83,7 +87,8 @@ public class UsuarioControlador {
 		if (!detUsuario.getContraseña().equals(usuario.get().getContraseña())) {
 			return ResponseEntity.notFound().build();
 		}
-
+		long tiempo = System.currentTimeMillis();
+		
 		return ResponseEntity.status(HttpStatus.OK).body(usuario.get());
 	}
 	// Obtener un Usuario

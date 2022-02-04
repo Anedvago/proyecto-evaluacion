@@ -12,7 +12,7 @@ public interface DetalleServicio {
 	
 	public Optional<Detalle> findByID(Long id);
 	
-	public List<ReporteProd> obtenerReporte();
+	public List<?> obtenerReporte();
 	
 	public Detalle save(Detalle detalle);
 	

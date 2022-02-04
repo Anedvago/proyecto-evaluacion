@@ -39,7 +39,7 @@ public class DetalleServicioImpl implements DetalleServicio{
 	}
 
 	@Override
-	public List<ReporteProd> obtenerReporte() {
+	public List<?> obtenerReporte() {
 		return repo.obtenerReporte();
 	}
 

@@ -43,6 +43,12 @@ public class DetalleServicioImpl implements DetalleServicio{
 		return repo.obtenerReporte();
 	}
 
+	@Override
+	public List<?> obtenerReporteClientes() {
+		
+		return repo.obtenerReporteClientes();
+	}
+
 	
 
 }

@@ -88,5 +88,11 @@ public class DetalleControlador {
 	public List<?> listarReporte() {
 		return serv.obtenerReporte();
 	}
+	
+	//Obtener reporte clientes
+		@GetMapping("/reporte-clientes")
+		public List<?> listarReporteCli() {
+			return serv.obtenerReporteClientes();
+		}
 
 }

@@ -14,6 +14,8 @@ public interface DetalleServicio {
 	
 	public List<?> obtenerReporte();
 	
+	public List<?> obtenerReporteClientes();
+	
 	public Detalle save(Detalle detalle);
 	
 	public void deleteByID(Long id);
